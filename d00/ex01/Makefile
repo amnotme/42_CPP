@@ -5,20 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/21 10:08:59 by lhernand          #+#    #+#              #
-#    Updated: 2019/01/21 10:09:01 by lhernand         ###   ########.fr        #
+#    Created: 2019/01/21 11:38:16 by lhernand          #+#    #+#              #
+#    Updated: 2019/01/21 18:01:39 by lhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = Agenda
 CXX = clang++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors
-CXXFILES = megaphone.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pendatic-errors
+CXXFILES = Phonebook.cpp \
+		Contact.cpp \
+		main.cpp
 
-all: $(NAME)
-
-$(NAME):
-	$(CXX) $(CXXFLAGS) $(CXXFILES) -o $(NAME)
+all:
+	$(CXX) $(CFLAGS) $(CXXFILES) -o $(NAME)
 
 clean:
 	/bin/rm -f $(NAME)
