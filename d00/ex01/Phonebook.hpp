@@ -38,5 +38,4 @@ class Phonebook
 	Contact 	_contacts[MAX];
 };
 
-
 #endif

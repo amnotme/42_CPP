@@ -52,7 +52,7 @@ class Contact
 	void 		setUnderwearColor(std::string const uc);
 	void 		setDarkestSecret(std::string const ds);
 
-	//class variables
+	//class attributes
 	private:
 	std::string	_firstName;
 	std::string	_lastName;
