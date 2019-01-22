@@ -16,11 +16,11 @@
 void 		menu(void)
 {
 	std::cout << BAGREEN;
-	std::cout << "Welcome to your Phoenebook" << RESET << BGREEN << std::endl;
+	std::cout << "Welcome to your Phonebook" << RESET << BGREEN << std::endl;
 	std::cout << "Please make a selection from the following: " << std::endl;
-	std::cout << "Add a contact: [1] " << std::endl;
-	std::cout << "Search for a contact: [2] " << std::endl;
-	std::cout << "Exit your digital phonebook: [3] " << std::endl;
+	std::cout << "To add a contact: type [1] or 'add' " << std::endl;
+	std::cout << "To search for a contact: type [2] or 'search' " << std::endl;
+	std::cout << "To exit your digital phonebook: type [3] or 'exit' " << std::endl;
 	std::cout << RESET;
 }
 Phonebook::Phonebook(void) :
@@ -73,7 +73,6 @@ void 		Phonebook::add(void)
 		exit(1);
 	std::cout << BYELLOW << "What's the first name? " << RESET;
 	std::getline(std::cin, tempString);
-
 	this->_contacts[this->_count].setFirstName(tempString);
 	if (std::cin.eof())
 		exit(1);
@@ -147,8 +146,8 @@ void 		printFooter(void)
 }
 std::string	truncate(std::string str, size_t width)
 {
-	size_t 				len = str.length();
-	size_t 				diff = width - len;
+	size_t 		len = str.length();
+	size_t 		diff = width - len;
 	std::string 	sub;
 
 	if (len >= width)
@@ -169,8 +168,10 @@ void 		Phonebook::printContacts(void)
 	for (int i = 0; i < MAX; i++)
 	{
 		std::cout << HBCYAN;
-		std::cout << std::right << i + 1;
-		std::cout << std::right << truncate("", 9);
+		std::stringstream ss;
+		ss << (i + 1);
+		std::string integer = ss.str();
+		std::cout << std::right << "|" << truncate(integer, 9);
 		std::cout << std::right << "|" << truncate(this->_contacts[i].getFirstName(), 10);
 		std::cout << std::right << "|" << truncate(this->_contacts[i].getLastName(), 10);
 		std::cout << std::right << "|" << truncate(this->_contacts[i].getNickName(), 10);
