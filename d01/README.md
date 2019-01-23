@@ -7,8 +7,8 @@
 
 ###### Compilation Flags  
 
-Using compilation flags in c++ like -pedantic-errors and -std=c++98 make the  
-compiler turns off extensions and generates more warnings.  
+Using compiler flags in c++ like ```-pedantic-errors``` and```-std=c++98```  
+make the compiler turns off extensions and generates more warnings.  
 Reading on [StackOverflow](https://tinyurl.com/ybjy25j8)  
 
 ###### Headers & Libraries  
