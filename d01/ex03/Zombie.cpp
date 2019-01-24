@@ -13,6 +13,15 @@
 #include "Zombie.hpp"
 #include "Colors.hpp"
 
+Zombie::Zombie(void)
+{
+	std::string ranNames[7] = {"Lust", "Sloth", "Envy", "Anger","Pride",
+						"Covetousness", "Gluttony"};
+	std::string ranTypes[5] = {"NewBorn", "Old", "Runner", "Fire", "Invincible"};
+	this->_name = (ranNames[rand() % 6]);
+	this->_type = (ranTypes[rand() % 5]);
+}
+
 Zombie::Zombie(std::string name, std::string type) :
 _name(name),
  _type(type)

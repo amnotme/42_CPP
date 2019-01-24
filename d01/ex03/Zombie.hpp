@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieEvent.hpp                                    :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 03:09:52 by lhernand          #+#    #+#             */
-/*   Updated: 2019/01/23 03:09:59 by lhernand         ###   ########.fr       */
+/*   Created: 2019/01/23 03:09:34 by lhernand          #+#    #+#             */
+/*   Updated: 2019/01/23 03:09:35 by lhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIEEVENT_HPP
-# define ZOMBIEEVENT_HPP
-
-# include "Zombie.hpp"
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 # include <iostream>
 # include <string>
 # include <cstdlib>
 
-class ZombieEvent
+class Zombie
 {
 	public:
-		ZombieEvent(void);
-		~ZombieEvent(void);
-		ZombieEvent(ZombieEvent const & src);
-		ZombieEvent &operator=(ZombieEvent const & rhs);
+		Zombie(void);
+		Zombie(std::string name, std::string type);
+		~Zombie(void);
+		Zombie(Zombie const & src);
+		Zombie &operator=(Zombie const & rhs);
 
-		void 		setZombieType(std::string const type);
-		std::string 	getZombieType(void) const;
-		Zombie 		*newZombie(std::string const name);
-		Zombie 		*randomChump(void);
+		void 		setName(std::string const name);
+		void 		setType(std::string const type);
+		std::string 	getType(void) const;
+		std::string	getName(void) const;
+
+		void 		announce(void) const;
 	private:
+		std::string 	_name;
 		std::string 	_type;
 };
-
 #endif

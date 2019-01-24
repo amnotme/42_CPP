@@ -10,33 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Colors.hpp"
 #include "Zombie.hpp"
 #include "ZombieEvent.hpp"
+#include "ZombieHorde.hpp"
+#include <iostream>
+#include <stdlib.h>
+#include <cstdlib>
 
-int 			main(void)
+int 			main(int argc, char **argv)
 {
-	Zombie  *z1 = new Zombie("Leo", "Type");
-	z1->announce();
-	ZombieEvent apocalypse = ZombieEvent();
-
-	apocalypse.setZombieType("Apos Zombie");
-	Zombie 	*AposZ1 = apocalypse.newZombie("Leo");
-	AposZ1->announce();
-
-	ZombieEvent zomEvent;
-	ZombieEvent zomEvent2;
-
-	zomEvent.setZombieType("Crazy");
-	zomEvent2.setZombieType("Even Crazier");
-
-	Zombie *randomZom = zomEvent.randomChump();
-	Zombie *randomZom2 = zomEvent2.randomChump();
-
-	randomZom->announce();
-	randomZom2->announce();
-
-	delete(z1);
-	delete(randomZom);
-	delete(randomZom2);
+	std::srand(std::time(nullptr));
+	if (argc != 2)
+	{
+		std::cout << BPURPLE << "Please enter a number of Zombies to invade your city" << RESET << std::endl;
+		return (0);
+	}
+	ZombieHorde zoms = ZombieHorde(atoi(argv[1]));
+	ZombieHorde zoms2 = ZombieHorde(atoi(argv[1]));
+	zoms.announce();
+	zoms2.announce();
 	return (0);
 }
