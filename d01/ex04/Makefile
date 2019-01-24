@@ -5,18 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/23 21:08:09 by lhernand          #+#    #+#              #
-#    Updated: 2019/01/23 22:38:22 by lhernand         ###   ########.fr        #
+#    Created: 2019/01/23 22:42:44 by lhernand          #+#    #+#              #
+#    Updated: 2019/01/23 22:42:47 by lhernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME = Zombie
+NAME = my_brain
 CCFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -pedantic-errors
 CC = clang++
-CCFILES = main.cpp \
-		Zombie.cpp \
-		ZombieHorde.cpp
+CCFILES = ex04.cpp
 
 all: $(NAME)
 
@@ -29,6 +26,6 @@ fclean:
 clean:
 	/bin/rm -f $(NAME)
 
-re: fclean all
+re: fclean make
 
-.PHONY: re, clean, all, fclean
+.PHONY: re clean all fclean
