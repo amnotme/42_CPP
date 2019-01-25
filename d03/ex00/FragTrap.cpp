@@ -23,7 +23,6 @@ _meleeAttackDamage(30),
 _rangedAttackDamage(20),
 _armorDamageReduction(5)
 {
-	srand (time(NULL));
 	std::cout << BCYAN << _name <<  HYELLOW << " -- start bootup sequence.";
 	std::cout << RESET << std::endl;
 	return ;
@@ -84,35 +83,35 @@ std::string 	FragTrap::getName(void) const
 {
 	return (this->_name);
 }
-int			FragTrap::getHp(void) const
+unsigned int			FragTrap::getHp(void) const
 {
 	return (this->_hp);
 }
-int			FragTrap::getMaxHp(void) const
+unsigned int			FragTrap::getMaxHp(void) const
 {
 	return (this->_maxHp);
 }
-int			FragTrap::getEp(void) const
+unsigned int			FragTrap::getEp(void) const
 {
 	return (this->_ep);
 }
-int			FragTrap::getMaxEp(void) const
+unsigned int			FragTrap::getMaxEp(void) const
 {
 	return (this->_maxEp);
 }
-int			FragTrap::getLevel(void) const
+unsigned int			FragTrap::getLevel(void) const
 {
 	return (this->_level);
 }
-int 			FragTrap::getMeleeAttackDamage(void) const
+unsigned int 			FragTrap::getMeleeAttackDamage(void) const
 {
 	return (this->_meleeAttackDamage);
 }
-int			FragTrap::getRangedAttackDamage(void) const
+unsigned int			FragTrap::getRangedAttackDamage(void) const
 {
 	return (this->_rangedAttackDamage);
 }
-int			FragTrap::getArmorDamageReduction(void) const
+unsigned int			FragTrap::getArmorDamageReduction(void) const
 {
 	return (this->_armorDamageReduction);
 }
@@ -121,42 +120,141 @@ void			FragTrap::setName(std::string name)
 {
 	this->_name = name;
 }
-void			FragTrap::setHp(int hp)
+void			FragTrap::setHp(unsigned int hp)
 {
 	this->_hp = hp;
 }
-void			FragTrap::setMaxHp(int maxHp)
+void			FragTrap::setMaxHp(unsigned int maxHp)
 {
 	this->_maxHp = maxHp;
 }
-void			FragTrap::setEp(int ep)
+void			FragTrap::setEp(unsigned int ep)
 {
 	this->_ep = ep;
 }
-void			FragTrap::setMaxEp(int maxEp)
+void			FragTrap::setMaxEp(unsigned int maxEp)
 {
 	this->_maxEp = maxEp;
 }
-void			FragTrap::setLevel(int level)
+void			FragTrap::setLevel(unsigned int level)
 {
 	this->_level = level;
 }
-void			FragTrap::setMeleeAttackDamage(int meleeAttackDamage)
+void			FragTrap::setMeleeAttackDamage(unsigned int meleeAttackDamage)
 {
 	this->_meleeAttackDamage = meleeAttackDamage;
 }
-void			FragTrap::setRangedAttackDamage(int rangedAttackDamage)
+void			FragTrap::setRangedAttackDamage(unsigned int rangedAttackDamage)
 {
 	this->_rangedAttackDamage = rangedAttackDamage;
 }
-void			FragTrap::setArmorDamageReduction(int armorDamageReduction)
+void			FragTrap::setArmorDamageReduction(unsigned int armorDamageReduction)
 {
 	this->_armorDamageReduction = armorDamageReduction;
 }
-// void 		FragTrap::rangedAttackDamage(std::string const & tarset)
-// void 		FragTrap::meleeAttack(std::string const & tarset)
-// void 		FragTrap::takeDamage(unsigned int amount)
-// void 		FragTrap::beRepaired(unsigned int amount)
+void 		FragTrap::rangedAttack(std::string const & target)
+{
+	if (this->getEp() > RANGEDEPCOST)
+	{
+		std::cout << BRED << "<" << HCYAN << this->getName() << BRED << ">" << HYELLOW << " attacks " << HCYAN << target << HYELLOW " at range with : " << BRED
+				<< this->getRangedAttackDamage() << HYELLOW << " points worth of damage" << RESET << std::endl;
+		this->setEp(this->getEp() - RANGEDEPCOST);
+	}
+	else
+	{
+		std::cout << HPURPLE << "Hey... Is this thing on!!! What's wrong with it why won't it shoot!!!!" << std::endl;
+		std::cout << HYELLOW << "You've tried attacking with your ranged weapon but you only have " << HRED << this->getEp() << HYELLOW << " Energy points!" << RESET << std::endl;
+	}
+	sleep(1);
+}
+void 		FragTrap::meleeAttack(std::string const & target)
+{
+	if (this->getEp() > MELEEEPCOST)
+	{
+		std::cout << BRED << "<" << HCYAN << this->getName() << BRED << "> " << HYELLOW << "punches " << HCYAN << target << HYELLOW << " with : " << BRED
+				<< this->getMeleeAttackDamage() << HYELLOW << " points worth of damage" << RESET << std::endl;
+		this->setEp(this->getEp() - MELEEEPCOST);
+	}
+	else
+	{
+		std::cout << HPURPLE << "This is tiring... Let me catch my breath for a second... or a day" << std::endl;
+		std::cout << HYELLOW << "You've tried attacking at short range but you simply won't move.  You only have " << HRED << this->getEp() << HYELLOW << " Energy points!" << RESET << std::endl;
+	}
+	sleep(1);
+}
+void 		FragTrap::takeDamage(unsigned int amount)
+{
+	if (this->getHp() < amount)
+	{
+		std::cout << HPURPLE << "I'm almost already dead..." << std::endl;
+		std::cout << HYELLOW << "Armor Damage reduction activated: +" << this->getArmorDamageReduction() << std::endl;
+		std::cout << BRED << "<" << HCYAN << this->getName() << BRED << ">" << HYELLOW << " took " << HRED << amount - this->getArmorDamageReduction() << HYELLOW << " points of damage!" << RESET << std::endl;
+		this->setHp(ZERO);
+	}
+	else
+	{
+		std::cout << HPURPLE << "Oouchhh!!!! that hurts!" << std::endl;
+		std::cout << "Armor Damage reduction activated: +" << this->getArmorDamageReduction() << std::endl;
+		std::cout << BRED << "<" << HCYAN << this->getName() << BRED << ">" << HYELLOW <<  " took " << HRED << amount - this->getArmorDamageReduction() << HYELLOW << " points of damage!" << RESET << std::endl;
+		this->setHp(this->getHp() - (amount - this->getArmorDamageReduction()));
+	}
+	printStats();
+	sleep(1);
+}
+void 		FragTrap::beRepaired(unsigned int amount)
+{
+	if (this->getHp() + amount > this->getMaxHp())
+	{
+		std::cout << HPURPLE << "I've had enough" << std::endl;
+		std::cout << HYELLOW << "You've tried healing by : " << HRED << amount << HYELLOW << " but You're already at your limit" << RESET << std::endl;
+		this->setHp(this->getMaxHp());
+	}
+	else
+	{
+		std::cout << HPURPLE << "I thought I was a goner!" << std::endl;
+		std::cout << HYELLOW "You've healed by " << amount << " HP." << RESET <<  std::endl;
+		this->setHp(this->getHp() + amount);
+	}
+	if (this->getEp() + amount > this->getMaxEp())
+	{
+		std::cout << HPURPLE << "That's too much!" << std::endl;
+		std::cout << HYELLOW << "You've tried healing by : " HRED << amount << HYELLOW << " but you're already at your limit" << RESET << std::endl;
+		this->setEp(this->getMaxEp());
+	}
+	else
+	{
+		std::cout << HPURPLE << "Much obliged!" << std::endl;
+		std::cout << HYELLOW << "You've recovered by " << amount << " EP." << RESET << std::endl;
+		this->setEp(this->getEp() + amount);
+	}
+	printStats();
+	sleep(1);
+}
+
+void 		FragTrap::vaulthunter_dot_exe(std::string const & target)
+{
+	std::string attacks[5] = {
+		"a sucker punch to the groin",
+		"a really bad dad joke",
+		"a ladle",
+		"a pencil to the eye",
+		"an obnoxious and hurtful comment"
+	};
+	if (this->getEp() > SPECIALEPCOST)
+	{
+		std::cout << BRED << "<" << HCYAN << this->getName() << BRED << "> " << HYELLOW << "attacks " << HCYAN << target << HYELLOW << " with : "
+				<< HBGREEN <<  attacks[rand() % 5] << HYELLOW <<  " for " << BRED << "50 " << HYELLOW << "points worth of damage" << RESET << std::endl;
+		this->setEp(this->getEp() - SPECIALEPCOST);
+	}
+	else
+	{
+		std::cout << HPURPLE << "This is tiring... Let me catch my breath for a second... or a day" << std::endl;
+		std::cout << HYELLOW << "You've tried attacking at short range but you simply won't move.  You only have " << BRED  << this->getEp() << HYELLOW << " Energy points!" << RESET <<  std::endl;
+	}
+	printStats();
+	sleep(1);
+}
+
 void     		FragTrap::printStats( void )
 {
 	std::cout << HRED << "<" << BCYAN << this->_name <<  HRED << ">" << BGREEN << ": " << std::endl;
