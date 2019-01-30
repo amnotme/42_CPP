@@ -38,27 +38,25 @@ class Bureaucrat
 	{
 		public:
 			GradeTooHighException(void);
-			~GradeTooHighException(void);
+			virtual ~GradeTooHighException(void) throw();
 			GradeTooHighException(GradeTooHighException const & src);
 			GradeTooHighException &operator=(GradeTooHighException const & rhs);
 
-			const char * what() const throw();
+			virtual const char * what() const throw();
 	};
 
 	class GradeTooLowException : public std::exception
 	{
 		public:
 			GradeTooLowException(void);
-			~GradeTooLowException(void);
+			virtual ~GradeTooLowException(void) throw();
 			GradeTooLowException(GradeTooLowException const & src);
 			GradeTooLowException &operator=(GradeTooLowException const & rhs);
-			const char * what() const throw();
+
+			virtual const char * what() const throw();
 	};
 
 	private:
-		//Add your private methods
-
-		//Add your private attributes below here
 		int 			_grade;
 		std::string	_name;
 };

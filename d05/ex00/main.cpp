@@ -17,22 +17,82 @@ int 			main(void)
  	Bureaucrat leo("Leo", 150);
 	Bureaucrat ivan("Ivan", 1);
 	std::cout << leo << std::endl;
+	std::cout << ivan << std::endl;
 
 	try
 	{
-		ivan.incrementGrade();
-		leo.decrementGrade();
-		std::cout << ivan << std::endl;
-		std::cout << leo << std::endl;
+		Bureaucrat leoTooHigh("Leo2", 151);
 	}
 	catch (Bureaucrat::GradeTooLowException &e)
 	{
-
+		std::cout << e.what() << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
 	{
-
+		std::cout << e.what() << std::endl;
 	}
+
+	try
+	{
+		Bureaucrat ivanTooLow("Ivan2", 0);
+	}
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	//will throw Bureaucrat::GradeTooLowException();
+	try
+	{
+		leo.decrementGrade();
+		std::cout << leo << std::endl;
+		std::cout << ivan << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	//will throw Bureaucrat::GradeTooHighException();
+	try
+	{
+		ivan.incrementGrade();
+		std::cout << leo << std::endl;
+		std::cout << ivan << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	//will execute adequately and return control back to the user.
+	try
+	{
+		ivan.decrementGrade();
+		leo.incrementGrade();
+		std::cout << leo << std::endl;
+		std::cout << ivan << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 
 	return (0);
 }
