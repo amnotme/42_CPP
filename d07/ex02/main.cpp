@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.cpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/31 02:25:24 by lhernand          #+#    #+#             */
-/*   Updated: 2019/01/31 02:32:40 by lhernand         ###   ########.fr       */
+/*   Created: 2019/01/31 21:59:10 by lhernand          #+#    #+#             */
+/*   Updated: 2019/01/31 22:02:06 by lhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-template<typename T>
-void		swap(T & a, T & b)
-{
-	T temp = a;
-	a = b;
-	b = temp;
-}
-template<typename T>
-T  &	max(T  & a, T & b)
-{
-	if (a < b)
-		return (a);
-	else if (a == b)
-		return (b);
-	else
-		return (b);
-}
+# include "Array.cpp"
+# include <iostream>
 
-template<typename T>
-T const &	min(T const & a, T const & b)
+int			main(void)
 {
-	if (a > b)
-		return (a);
-	else if (a == b)
-		return (b);
-	else
-		return (b);
+	unsigned int a = 2;
+	Array<int> int_array(a);
+	std::cout << int_array.size() << std::endl;
+	int_array.setElem(0, 25);
+	int_array.setElem(1, 26);
+	std::cout << int_array[1] << std::endl;
+	std::cout << int_array[2] << std::endl;
+
+	Array<float> float_array;
+	std::cout << float_array.size() << std::endl;
+
+	return (0);
 }

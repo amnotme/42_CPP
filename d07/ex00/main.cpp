@@ -20,7 +20,7 @@ int main( void ) {
 	int a = 2;
 	int b = 3;
 
-	::swap( a, b );
+	::swap(a, b);
 
 	std::cout << BGREEN << "a = " << BCYAN << a << BGREEN << ", b = " << BCYAN << b << std::endl;
 	std::cout << BRED << "min( a, b ) = " << BCYAN << ::min( a, b ) << std::endl;
