@@ -6,7 +6,7 @@
 /*   By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 21:57:54 by lhernand          #+#    #+#             */
-/*   Updated: 2019/01/31 22:16:16 by lhernand         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:25:39 by lhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ template<class T> class Array
 				return (_arr[0]);
 			}
 			else
-				return (getElemAt(elem));
+				return (_arr[elem]);
 		}
 		T const 			&operator=(T const & arr)
 		{
