@@ -18,17 +18,17 @@
 #include <list>
 #include <set>
 
-int			main(int argc, char *argv[]) 
+int			main(int argc, char *argv[])
 {
 	int size;
 	int toFind;
 	int array[] = {10, 20, 30, 40, 50, -10, -20, -30, -40, -50};
 	std::list<int> listV;
-	if (argc != 2) 
+	if (argc != 2)
 	{
 		std::cout << BGREEN << "Please Enter one argument" << RESET << std::endl;
-	} 
-	else 
+	}
+	else
 	{
 		toFind = std::atoi(argv[1]);
 		size = array_size(array);
@@ -42,17 +42,16 @@ int			main(int argc, char *argv[])
 		listV.push_back(2);
 		listV.push_back(20);
 		listV.push_back(-10);
-		try 
-		{	
-			easyfind< std::list<int> >(listV, toFind);
-		///	easyfind< std::vector<int> >(vectL, toFind);
-		//	easyfind< std::set<int> >(setI, toFind);
+		try
+		{
+			// easyfind< std::list<int> >(listV, toFind);
+			// easyfind< std::vector<int> >(vectL, toFind);
+			easyfind< std::set<int> >(setI, toFind);
 		}
-		catch (std::string str) 
+		catch (std::string str)
 		{
 			std::cout << str << std::endl;
 		}
 	}
 	return (0);
 }
-
